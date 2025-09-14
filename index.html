@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&family=Open+Sans&display=swap">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .ubuntu {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .btn{
+            background-color: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #374151;
+            cursor: pointer;
+        }
+        .btn:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .link {
+            cursor: pointer;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+    <!-- Search Header -->
+    <header class="flex w-full p-5 justify-between text-sm text-gray-800">
+        <!-- Left section -->
+        <div class="flex space-x-4 items-center ubuntu">
+            <a href="https://about.google/">
+                <p class="link">About</p>
+            </a>
+            <a href="https://chrome.google.com/webstore">
+                <p class="link">Webstore</p>
+            </a>
+        </div>
+
+        <!-- Right section -->
+        <div class="flex space-x-4 ubuntu items-center">
+            <a href="https://mail.google.com">
+                <p class="link">Gmail</p>
+            </a>
+            <a href="https://www.google.com/imghp">
+                <p class="link">Images</p>
+            </a>
+
+            <!-- Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 p-2 rounded-full hover:bg-gray-100 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+
+            <!-- Avatar -->
+            <img class="h-11 rounded-full cursor-pointer transition duration-150 transform hover:scale-110" src="https://i.pinimg.com/564x/de/6b/29/de6b295da4ff46c17e31688c5b274f8a.jpg" alt="profile pic" />
+        </div>
+    </header>
+
+    <!-- Main Search Section -->
+    <main class="flex flex-col items-center pt-3 flex-grow w-4/5 mx-auto">
+        <!-- Google Logo -->
+        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" class="w-72 md:w-80 lg:w-96 mb-8" />
+
+        <!-- Search Form -->
+        <form class="flex flex-col items-center w-full">
+            <!-- Search Input -->
+            <div class="flex w-full mt-5 hover:shadow-lg focus-within:shadow-lg max-w-md rounded-full border border-gray-200 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl">
+                <!-- Search Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-3 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                
+                <input type="text" class="flex-grow focus:outline-none" id="searchInput" />
+                
+                <!-- Microphone Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 text-gray-700 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+            </div>
+            
+            <!-- Search Buttons -->
+            <div class="flex flex-col w-1/2 space-y-2 justify-center mt-8 sm:space-y-0 sm:flex-row sm:space-x-4 ubuntu">
+                <button type="button" class="btn" id="searchButton">
+                    Google Search
+                </button>
+
+                <button type="button" class="btn">
+                    <a href="https://www.google.com/doodles">I'm Feeling Lucky</a>
+                </button>
+            </div>
+        </form>
+
+        <!-- Security Checkup -->
+        <div class="flex link justify-center text-sm mt-7 pr-1 text-blue-700 items-center font-Ubuntu">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzFiNzVlNiI+PHBhdGggZD0iTTEyIDFMMyA1djZjMCA1LjU1IDMuODQgMTAuNzQgOSAxMiA1LjE2LTEuMjYgOS02LjQ1IDktMTJWNXptMCAzYTQgNCAwIDEgMSAwIDhhNCA0IDAgMCAxIDAtOHoiLz48cGF0aCBkPSJNNCA0aDExdjExSDR6IiBmaWxsPSJub25lIi8+PC9zdmc+" class="h-5 px-1" alt="Security Shield">
+            <a href="https://myaccount.google.com/security-checkup">Take a 2 Minute Google Security Checkup.</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="grid w-full divide-y divide-gray-300 bg-gray-100 text-gray-500 text-sm mt-auto">
+        <div class="px-8 py-3">
+            <p>India</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 grid-flow-row-dense px-8 py-3">
+            <div class="flex link justify-center items-center md:col-span-2 lg:col-span-1 lg:col-start-2 ubuntu">
+                <a href="">Google</a>
+            </div>
+
+            <div class="flex justify-center space-x-5 whitespace-nowrap md:justify-self-start">
+                <a href="https://about.google">
+                    <p class="link">About</p>
+                </a>
+                <a href="https://ads.google.com">
+                    <p class="link">Advertising</p>
+                </a>
+                <a href="https://www.google.com/business/">
+                    <p class="link">Business</p>
+                </a>
+                <a href="https://www.google.com/search/howsearchworks/">
+                    <p class="link">How Search Works</p>
+                </a>
+            </div>
+            <div class="flex justify-center space-x-5 md:ml-auto">
+                <a href="https://policies.google.com/privacy">
+                    <p class="link">Privacy</p>
+                </a>
+                <a href="https://policies.google.com/terms">
+                    <p class="link">Terms</p>
+                </a>
+                <a href="https://www.google.com/preferences">
+                    <p class="link">Settings</p>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        
+        // Function to perform search
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // Redirect directly to results page
+                window.location.href = 'result.html';
+            }
+        }
+        
+        // Event listener for button click
+        searchButton.addEventListener('click', performSearch);
+        
+        // Event listener for Enter key
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submission/reload
+                performSearch();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

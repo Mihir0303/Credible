@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credibility Analysis - The Hindu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&family=Open+Sans&display=swap">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #202124;
+            background: #f9f9f9;
+            line-height: 1.6;
+        }
+        .ubuntu {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .source-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .source-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .source-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+        }
+        .analysis-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .analysis-button:hover {
+            background: #0056b3;
+        }
+        .credibility-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 5px 15px;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .credibility-meter {
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .meter-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        .verification-step {
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .verification-step h4 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: #f1f5f9;
+            color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-green-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Back Button -->
+        <a href="article.html" class="back-button">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Article
+        </a>
+
+        <!-- Header -->
+        <header class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex items-center mb-4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwN2JmZiI+PHBhdGggZD0iTTEyIDFMMSAxNmgzdjZsOCA0IDgtNHYtNmgzTDEyIDF6bTAgOWMxLjY2IDAgMy0xLjM0IDMtM3MtMS4zNC0zLTMtMy0zIDEuMzQtMyAzIDEuMzQgMyAzIDN6Ii8+PC9zdmc+" class="h-10 w-10 mr-3" alt="Credible Logo">
+                <h1 class="text-3xl font-bold text-gray-800">Credibility Analysis Report</h1>
+            </div>
+            <p class="text-gray-600">This report provides a detailed analysis of the credibility of the news article "2024 Elections: Key States Show Tight Race Between Ruling Coalition and Opposition" published by The Hindu.</p>
+        </header>
+
+        <!-- Article Reference -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Article Information</h2>
+            <div class="border-l-4 border-blue-500 pl-4">
+                <h3 class="text-lg font-semibold">2024 Elections: Key States Show Tight Race Between Ruling Coalition and Opposition</h3>
+                <p class="text-gray-600">By Rajesh Kumar | The Hindu | Published: June 12, 2023</p>
+                <p class="text-gray-600 mt-2">Analysis performed: June 12, 2023 at 14:32 IST</p>
+            </div>
+        </div>
+
+        <!-- Overall Score -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Overall Credibility Score</h2>
+            <div class="credibility-score">87%</div>
+            <div class="credibility-meter mx-auto" style="max-width: 400px;">
+                <div class="meter-fill bg-green-600" style="width: 87%;"></div>
+            </div>
+            <p class="text-gray-600 mt-4">This article has a high credibility rating based on our multi-factor analysis.</p>
+            
+            <div class="tags justify-center">
+                <span class="tag bg-green-100 text-green-800">Fact-Checked</span>
+                <span class="tag bg-blue-100 text-blue-800">Multiple Sources</span>
+                <span class="tag bg-purple-100 text-purple-800">Expert Verified</span>
+                <span class="tag bg-yellow-100 text-yellow-800">Minimal Bias</span>
+            </div>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Detailed Analysis</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-2">Source Verification</h3>
+                    <p class="text-sm">Cross-referenced with 12 trusted databases</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 92%"></div>
+                    </div>
+                    <p class="text-xs mt-2 text-gray-600">92% match with verified sources</p>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-2">Fact Consistency</h3>
+                    <p class="text-sm">Verified against known factual databases</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                    <p class="text-xs mt-2 text-gray-600">85% of facts consistent with trusted data</p>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-2">Bias Detection</h3>
+                    <p class="text-sm">Minimal bias detected in reporting</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                        <div class="bg-purple-600 h-2.5 rounded-full" style="width: 78%"></div>
+                    </div>
+                    <p class="text-xs mt-2 text-gray-600">78% neutral tone detected</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3">Verification Process</h3>
+            
+            <div class="verification-step">
+                <h4>Step 1: Source Authentication</h4>
+                <p>The article was published by The Hindu, a reputable news source with a long history of credible journalism. Our system verified the article's origin and cross-referenced it with the publisher's official website.</p>
+            </div>
+            
+            <div class="verification-step">
+                <h4>Step 2: Fact-Checking</h4>
+                <p>All statistical claims in the article were verified against official databases. The survey methodology was examined for standard practices and potential biases.</p>
+            </div>
+            
+            <div class="verification-step">
+                <h4>Step 3: Cross-Referencing</h4>
+                <p>Information in the article was compared with reports from other trusted news sources and official databases to identify inconsistencies or contradictions.</p>
+            </div>
+            
+            <div class="verification-step">
+                <h4>Step 4: Contextual Analysis</h4>
+                <p>Our AI system analyzed the article for sensationalism, emotional language, and potential political biases that might affect the neutrality of the reporting.</p>
+            </div>
+            
+            <div class="verification-step">
+                <h4>Step 5: Expert Review</h4>
+                <p>Selected claims were flagged for human expert review to validate the AI's findings and provide nuanced understanding of complex political context.</p>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Sources Used for Verification</h2>
+            <p class="text-gray-600 mb-4">This article was verified against the following trusted sources:</p>
+            
+            <ul class="source-list">
+                <li>Election Commission of India - Historical voting data and constituency information</li>
+                <li>Centre for Monitoring Indian Economy (CMIE) - Employment statistics</li>
+                <li>Reserve Bank of India - Economic indicators and inflation data</li>
+                <li>Lokniti-CSDS - Previous election surveys and data</li>
+                <li>PRS Legislative Research - Policy analysis</li>
+                <li>National Statistical Office (NSO) - Official statistical data</li>
+                <li>Verified journalistic reports from 5 major publications</li>
+                <li>Academic research papers on Indian electoral patterns</li>
+                <li>Government press releases and official statements</li>
+                <li>International election monitoring reports</li>
+            </ul>
+        </div>
+
+        <!-- AI Analysis -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">AI Analysis Summary</h2>
+            <p>Our AI system has analyzed this article against multiple trusted databases and found:</p>
+            
+            <ul class="source-list">
+                <li>All statistical data matches official sources with 98% accuracy</li>
+                <li>Quotes from experts are verified and correctly attributed</li>
+                <li>Methodology description is consistent with standard survey practices</li>
+                <li>Historical context is accurate and properly represented</li>
+                <li>No significant exaggerations or misleading statements detected</li>
+                <li>Minor discrepancies in regional vote share projections (within margin of error)</li>
+                <li>Appropriate contextualization of complex political dynamics</li>
+                <li>Balanced representation of multiple perspectives on election issues</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold mt-6 mb-3">Potential Limitations</h3>
+            <p>While this article scores high on credibility, readers should note:</p>
+            <ul class="source-list">
+                <li>Election surveys are predictive in nature and may not accurately reflect final outcomes</li>
+                <li>Political contexts can change rapidly, potentially affecting the accuracy of projections</li>
+                <li>Regional variations in sampling may affect precision of constituency-level predictions</li>
+            </ul>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Trust Indicators</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-2 flex items-center">
+                        <i class="fas fa-check-circle text-green-600 mr-2"></i> Positive Indicators
+                    </h3>
+                    <ul class="list-disc pl-5 text-sm">
+                        <li>Clear attribution of data sources</li>
+                        <li>Transparent methodology description</li>
+                        <li>Appropriate contextualization of statistics</li>
+                        <li>Balanced representation of different perspectives</li>
+                        <li>Reputable publisher with editorial standards</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-2 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i> Considerations
+                    </h3>
+                    <ul class="list-disc pl-5 text-sm">
+                        <li>Survey-based projections inherently uncertain</li>
+                        <li>Limited access to raw survey data for verification</li>
+                        <li>Potential for rapid changes in political landscape</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 rounded">
+            <p class="text-yellow-700"><strong>Note:</strong> This credibility assessment is based on automated analysis and human review at the time of publication. As new information becomes available, assessments may be updated. Readers should always consult multiple sources for comprehensive understanding, especially on evolving political matters.</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="text-center mt-8">
+            <a href="article.html" class="analysis-button">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Article
+            </a>
+            <button class="analysis-button bg-purple-600 ml-4">
+                <i class="fas fa-print mr-2"></i> Print Report
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Animate the credibility meter on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const meterFill = document.querySelector('.meter-fill');
+            meterFill.style.width = '0%';
+            
+            setTimeout(() => {
+                meterFill.style.width = '87%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

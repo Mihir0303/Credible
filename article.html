@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Indian Political News - The Hindu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&family=Open+Sans&display=swap">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #202124;
+            background: #f9f9f9;
+            line-height: 1.6;
+        }
+        .ubuntu {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #1a365d;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .credibility-meter {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .meter-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            overflow: hidden;
+            display: none;
+        }
+        .chatbot-header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chatbot-messages {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+        }
+        .bot {
+            background: #e9ecef;
+            border-top-left-radius: 5px;
+            align-self: flex-start;
+        }
+        .user {
+            background: #007bff;
+            color: white;
+            border-top-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #dee2e6;
+        }
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .chatbot-input button {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.5);
+            cursor: pointer;
+            z-index: 999;
+        }
+        .source-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .source-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .source-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+        }
+        .analysis-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .analysis-button:hover {
+            background: #0056b3;
+        }
+        .credibility-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .tags {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 3px 8px;
+            background: #e9ecef;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        .compact-credibility {
+            position: absolute;
+            top: 120px;
+            right: 30px;
+            width: 220px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px;
+            z-index: 10;
+        }
+        @media (max-width: 1024px) {
+            .compact-credibility {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm relative">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-xl font-bold text-blue-800">THE HINDU</span>
+                <span class="mx-2 text-gray-400">|</span>
+                <span class="text-gray-600">India's Most Trusted News Source</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-gray-600 mr-4">Wednesday, June 12, 2023</span>
+                <button class="bg-blue-100 text-blue-800 px-4 py-1 rounded">Subscribe</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-blue-800 text-white">
+        <div class="container mx-auto px-4">
+            <ul class="flex space-x-6 py-3">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">India</a></li>
+                <li><a href="#" class="hover:underline">World</a></li>
+                <li><a href="#" class="hover:underline">Politics</a></li>
+                <li><a href="#" class="hover:underline">Business</a></li>
+                <li><a href="#" class="hover:underline">Sports</a></li>
+                <li><a href="#" class="hover:underline">Entertainment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container px-4 py-8 relative">
+        <!-- Compact Credibility Assessment -->
+        <div class="compact-credibility bg-green-50">
+            <div class="flex justify-between mb-2">
+                <h3 class="text-sm font-semibold text-gray-700">Credibility Score</h3>
+                <i class="fas fa-info-circle text-blue-500 cursor-pointer" id="credibilityInfo"></i>
+            </div>
+            <div class="credibility-score">87%</div>
+            <div class="credibility-meter">
+                <div class="meter-fill bg-green-600" style="width: 87%;"></div>
+            </div>
+            <div class="tags">
+                <span class="tag bg-green-100 text-green-800">Fact-Checked</span>
+                <span class="tag bg-blue-100 text-blue-800">Multiple Sources</span>
+            </div>
+            <a href="analysis.html" class="block text-center text-sm text-white bg-blue-500 hover:bg-blue-600 font-medium mt-2 py-2 px-4 rounded-md transition-colors shadow-md hover:shadow-lg">Full Analysis</a>
+        </div>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">2024 Elections: Key States Show Tight Race Between Ruling Coalition and Opposition</h1>
+            <p class="text-gray-600 mb-2">By Rajesh Kumar | New Delhi | Updated: June 12, 2023 08:32 IST</p>
+            
+            <img src="/assets/art.png" alt="Indian Election" class="w-full h-auto rounded-lg mb-6">
+            
+            <p>NEW DELHI: With less than a year to go for the 2024 general elections, the political landscape in India appears increasingly competitive, according to the latest surveys conducted by The Hindu across six key states.</p>
+            
+            <p>The ruling National Democratic Alliance (NDA) and the opposition Indian National Developmental Inclusive Alliance (INDIA) are locked in a tight race, with the surveys indicating a margin of error of ±3%.</p>
+            
+            <h2>State-wise Breakdown</h2>
+            
+            <p>In Uttar Pradesh, which sends 80 members to the Lok Sabha, the NDA is projected to secure 42% of the vote share, while the INDIA bloc is close behind at 38%. The remaining 20% is divided among regional parties and others.</p>
+            
+            <p>Maharashtra shows a different picture, with the ruling Mahayuti alliance leading at 45%, compared to the MVA's 40%. The state's complex political dynamics, following splits in major parties, have created uncertainty in many constituencies.</p>
+            
+            <p>West Bengal continues to show dominance by the Trinamool Congress, which is projected to win 32 of the state's 42 seats. The BJP is expected to secure 8 seats, with the Left-Congress alliance managing 2.</p>
+            
+            <p>In Tamil Nadu, the DMK-led alliance is projected to maintain its stronghold with 35 of the 39 seats, while the AIADMK-BJP alliance is expected to win 4 seats.</p>
+            
+            <h2>Key Issues Influencing Voters</h2>
+            
+            <p>According to the survey, unemployment remains the primary concern for 32% of voters, followed by price rise (28%), and development (22%). Corruption and national security were cited by 12% and 6% of respondents respectively.</p>
+            
+            <p>"The employment situation, especially among youth, is the most significant factor in this election," said Dr. Meena Sharma, political analyst at the Centre for Policy Research. "Parties that can present a credible jobs plan will have an advantage."</p>
+            
+            <p>The survey also indicates that welfare schemes continue to play a crucial role, with 68% of beneficiaries stating that these programs influence their voting decisions.</p>
+            
+            <h2>Regional Variations</h2>
+            
+            <p>In southern states, linguistic and cultural identity politics remain significant, while in the Hindi heartland, religious polarization continues to influence voter behavior.</p>
+            
+            <p>The survey notes that women voters are increasingly making independent choices, with 62% of female respondents stating that they do not necessarily follow the voting preferences of male family members.</p>
+            
+            <p>Voting patterns also vary significantly between urban and rural areas, with urban voters prioritizing infrastructure and employment, while rural voters focus more on agriculture-related issues and welfare schemes.</p>
+            
+            <h2>Methodology</h2>
+            
+            <p>The survey was conducted between May 15 and June 5, 2023, covering 100,000 respondents across 500 constituencies in 6 states. The sample included representation from all age groups, socio-economic categories, and both urban and rural areas.</p>
+            
+            <p>The margin of error is ±3% at the state level and ±5% at the constituency level, with a 95% confidence level.</p>
+            
+            <p>As the election approaches, these numbers may shift based on campaign strategies, candidate selections, and emerging issues, making this one of the most closely watched elections in recent history.</p>
+            
+            <div class="border-t border-gray-200 mt-8 pt-6">
+                <p class="text-gray-600"><strong>Disclaimer:</strong> This article has been fact-checked by our automated verification system. The credibility score reflects the consistency of information with trusted sources.</p>
+            </div>
+        </article>
+
+    <!-- AI Chatbot Toggle -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-robot text-2xl"></i>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            <div>
+                <h3 class="font-bold">Credible AI Assistant</h3>
+                <p class="text-sm">Ask me about this article</p>
+            </div>
+            <button id="closeChatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                Hello! I'm here to help you understand this article better. What would you like to know?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your question..." id="chatbotInput">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">THE HINDU</h3>
+                    <p>India's most trusted news source, delivering accurate and unbiased journalism since 1878.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Sections</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Home</a></li>
+                        <li><a href="#" class="hover:underline">News</a></li>
+                        <li><a href="#" class="hover:underline">Opinion</a></li>
+                        <li><a href="#" class="hover:underline">Business</a></li>
+                        <li><a href="#" class="hover:underline">Sports</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Subscribe</a></li>
+                        <li><a href="#" class="hover:underline">ePaper</a></li>
+                        <li><a href="#" class="hover:underline">Today's Paper</a></li>
+                        <li><a href="#" class="hover:underline">Archives</a></li>
+                        <li><a href="#" class="hover:underline">Podcasts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">Contact</a></li>
+                        <li><a href="#" class="hover:underline">Careers</a></li>
+                        <li><a href="#" class="hover:underline">Advertise</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>© 2023 The Hindu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbot = document.getElementById('chatbot');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const sendMessage = document.getElementById('sendMessage');
+        
+        chatbotToggle.addEventListener('click', () => {
+            chatbot.style.display = 'block';
+        });
+        
+        closeChatbot.addEventListener('click', () => {
+            chatbot.style.display = 'none';
+        });
+        
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user' : 'bot');
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        sendMessage.addEventListener('click', () => {
+            if (chatbotInput.value.trim() !== '') {
+                addMessage(chatbotInput.value, true);
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const userMessage = chatbotInput.value.toLowerCase();
+                    let response = "";
+                    
+                    if (userMessage.includes('election') || userMessage.includes('survey')) {
+                        response = "The election survey mentioned in this article was conducted with a sample size of 100,000 respondents across 6 states. The margin of error is ±3% at the state level.";
+                    } else if (userMessage.includes('credibility') || userMessage.includes('trust')) {
+                        response = "This article scored 87% in our credibility assessment. It was verified against 12 trusted databases with high consistency in factual reporting.";
+                    } else if (userMessage.includes('source') || userMessage.includes('reference')) {
+                        response = "The article references data from the Election Commission, CMIE, RBI, and CSDS among others. You can view all sources in the Full Analysis section.";
+                    } else {
+                        response = "I can help answer questions about this article's content, sources, and credibility assessment. What specifically would you like to know?";
+                    }
+                    
+                    addMessage(response);
+                }, 1000);
+                
+                chatbotInput.value = '';
+            }
+        });
+        
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+        
+        // Simulate loading of credibility score
+        document.addEventListener('DOMContentLoaded', () => {
+            const meterFill = document.querySelector('.meter-fill');
+            meterFill.style.width = '0%';
+            
+            setTimeout(() => {
+                meterFill.style.width = '87%';
+            }, 500);
+            
+            // Add info icon functionality
+            const credibilityInfo = document.getElementById('credibilityInfo');
+            credibilityInfo.addEventListener('click', () => {
+                alert('This credibility score is based on automated verification against trusted databases. Click "Full Analysis" for detailed information.');
+            });
+        });
+    </script>
+</body>
+</html>
